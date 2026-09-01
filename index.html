@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blue Dragon Save Editor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="title-block">
+      <h1><span class="blue">Blue Dragon</span> Save Editor</h1>
+      <p class="subtitle">Edit your <code>savegame.dat</code></p>
+    </div>
+    <div class="load-block">
+      <label class="btn btn-primary" id="loadBtn">
+        <input type="file" id="fileInput" accept=".dat,.bin,application/octet-stream" hidden>
+        Load savegame.dat
+      </label>
+    </div>
+  </div>
+</header>
+
+<div id="dropOverlay"><div class="drop-msg">Drop <b>savegame.dat</b> here</div></div>
+
+<main id="app" class="empty">
+  <div class="empty-state">
+    <h2>No save loaded</h2>
+    <p>Click <b>Load savegame.dat</b> above (or drag &amp; drop the file) to begin.</p>
+    <p class="hint">Always keep a backup copy of your original save before editing!</p>
+  </div>
+
+  <nav id="tabs" class="hidden">
+    <button data-tab="chars" class="active">Characters</button>
+    <button data-tab="inventory">Inventory</button>
+    <button data-tab="encyclopedia">Encyclopedia</button>
+    <button data-tab="misc">Misc</button>
+    <span class="spacer"></span>
+    <button id="resetBtn" class="btn btn-warn">Revert</button>
+    <button id="saveBtn" class="btn btn-primary">Download edited save</button>
+  </nav>
+
+  <section id="tab-chars" class="tab active"></section>
+  <section id="tab-inventory" class="tab"></section>
+  <section id="tab-encyclopedia" class="tab"></section>
+  <section id="tab-misc" class="tab"></section>
+</main>
+
+<div id="toast"></div>
+<script src="js/save-data.js"></script>
+<script src="js/save-core.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
