@@ -412,17 +412,25 @@ function renderMisc() {
 }
 
 /* ---------- save / revert ---------- */
+function download(bytes, filename) {
+  var blob = new Blob([bytes], { type: 'application/octet-stream' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
 $('#saveBtn').addEventListener('click', function () {
   try {
     normalizeInventory();
     var bytes = C.serialize(state.original, state.s);
-    var blob = new Blob([bytes], { type: 'application/octet-stream' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = state.name.replace(/\.[^.]*$/, '') + '-edited.dat';
-    document.body.appendChild(a); a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
-    toast('Edited save generated — swap it in as your game\u2019s savegame.dat (keep a backup!).');
+    var stem = state.name.replace(/\.[^.]*$/, '');
+    /* Two files: the untouched original as <name>-backup.dat, and the edits under
+     * the original filename so it drops straight back into the game folder. */
+    download(state.original, stem + '-backup.dat');
+    setTimeout(function () { download(bytes, state.name); }, 400);
+    toast('Downloaded ' + state.name + ' (edited) and ' + stem + '-backup.dat (your original). Swap the edited one into your game folder.');
   } catch (err) {
     toast('Failed: ' + err.message, true);
   }

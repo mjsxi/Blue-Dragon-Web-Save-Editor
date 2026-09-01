@@ -20,7 +20,7 @@ original tool extracted before editing).
 - **Encyclopedia** — monster & boss record counters (258 monsters, 32 bosses) with search.
 - **Misc** — gold, medals, Nothings, battle stats (encounters, wins, escapes,
   back/surprise attacks…), difficulty (Normal/Hard/Impossible), play time.
-- Edited output downloads as `<original-name>-edited.dat`; **Revert** restores the loaded file.
+- **Download edited save** gives you two files: `<original-name>.dat` (your edits, ready to drop back into the game folder) and `<original-name>-backup.dat` (the file exactly as loaded). **Revert** re-reads the loaded save.
 
 ## Try locally
 
