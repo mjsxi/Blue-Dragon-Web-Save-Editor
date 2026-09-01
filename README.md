@@ -1,2 +1,2 @@
-# Blue-Dragon-Save-Editor-Web-
+# Blue Dragon Web Save Editor
 Save editor for blue dragon
